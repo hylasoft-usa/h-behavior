@@ -17,28 +17,10 @@ namespace Hylasoft.Behavior
     }
 
     /// <summary>
-    /// Verifies that two specified object variables refer to the same object. The assertion fails if they refer to different objects.
-    /// </summary>
-    /// <param name="expected">The object to compare to. This is the object the unit test expects.</param>
-    public void ToBe(object expected)
-    {
-      Assert.AreSame(expected, Obj);
-    }
-
-    /// <summary>
-    /// Verifies that two specified object variables refer to different objects. The assertion fails if they refer to the same object.
-    /// </summary>
-    /// <param name="expected">The object to compare to. This is the object the unit test expects.</param>
-    public void ToNotBe(object expected)
-    {
-      Assert.AreNotSame(expected, Obj);
-    }
-
-    /// <summary>
     /// Verifies that two specified generic type data are equal by using the equality operator. The assertion fails if they are not equal.
     /// </summary>
     /// <param name="expected">The object to compare to. This is the object the unit test expects.</param>
-    public void ToEqual(object expected)
+    public void ToBe(object expected)
     {
       Assert.AreEqual(expected, Obj);
     }
@@ -47,7 +29,7 @@ namespace Hylasoft.Behavior
     /// Verifies that two specified generic type data are equal by using the equality operator. The assertion fails if they are not equal.
     /// </summary>
     /// <param name="expected">The object to compare to. This is the object the unit test expects.</param>
-    public void ToEqual(T expected)
+    public void ToBe(T expected)
     {
       Assert.AreEqual(expected, Obj);
     }
@@ -56,9 +38,27 @@ namespace Hylasoft.Behavior
     /// Verifies that two specified generic type data are not equal. The assertion fails if they are equal.
     /// </summary>
     /// <param name="expected">The object to compare to. This is the object the unit test expects.</param>
-    public void ToNotEqual(object expected)
+    public void ToNotBe(object expected)
     {
       Assert.AreNotEqual(expected, Obj);
+    }
+
+    /// <summary>
+    /// Verifies that two specified object variables refer to the same object. The assertion fails if they refer to different objects.
+    /// </summary>
+    /// <param name="expected">The object to compare to. This is the object the unit test expects.</param>
+    public void ToBeSame(object expected)
+    {
+      Assert.AreSame(expected, Obj);
+    }
+
+    /// <summary>
+    /// Verifies that two specified object variables refer to different objects. The assertion fails if they refer to the same object.
+    /// </summary>
+    /// <param name="expected">The object to compare to. This is the object the unit test expects.</param>
+    public void ToNotBeSame(object expected)
+    {
+      Assert.AreNotSame(expected, Obj);
     }
 
     /// <summary>

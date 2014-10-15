@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BFCCB0
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "h-behavior.tests", "h-behavior.tests\h-behavior.tests.csproj", "{94CF63BF-284A-4371-822D-5B803A864D59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{792DD855-C47C-467A-9469-507F859E5B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{792DD855-C47C-467A-9469-507F859E5B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{792DD855-C47C-467A-9469-507F859E5B14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94CF63BF-284A-4371-822D-5B803A864D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94CF63BF-284A-4371-822D-5B803A864D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94CF63BF-284A-4371-822D-5B803A864D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94CF63BF-284A-4371-822D-5B803A864D59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Hylasoft.Behavior
+﻿namespace Hylasoft.Behavior
 {
   /// <summary>
   /// This class represents utility methods to perform BDD-like testing over MsTests

@@ -11,7 +11,7 @@ namespace Hylasoft.Behavior.Extensions
     /// <summary>
     /// Expects an exception to be thrown when executing the action
     /// </summary>
-    /// <typeparam name="T">The type of exception that is </typeparam>
+    /// <typeparam name="T">The type of exception that is thrown or any of its supertype</typeparam>
     /// <param name="test">the test object that is expected to throw the exception</param>
     public static void ToThrowException<T>(this TestObject<Action> test) where T : Exception
     {
@@ -20,12 +20,12 @@ namespace Hylasoft.Behavior.Extensions
       try
       {
         test.Obj();
-        Assert.Fail();
+        Assert.Fail("No exception has been thrown");
       }
       catch (Exception e)
       {
         if (!(e is T))
-          Assert.Fail();
+          Assert.Fail("Exception " + e.GetType() + " is not of type " + typeof(T));
       }
     }
   }

@@ -6,7 +6,6 @@ namespace Hylasoft.Behavior.Tests
   [TestClass]
   public class TestBehavior : Spec
   {
-
     private struct TestStruct
     {
       public string S;
@@ -57,9 +56,9 @@ namespace Hylasoft.Behavior.Tests
     [TestMethod]
     public void ToBeInstanceOfMethodsShouldWork()
     {
-      Expect(new NullReferenceException()).ToBeInstanceOf(typeof(object));
-      Expect(new NullReferenceException()).ToBeInstanceOf(typeof(Exception));
-      Expect(new Exception()).ToNotBeInstanceOf(typeof(int));
+      Expect("asdasd").ToBeInstanceOf(typeof(object));
+      Expect("ads").ToBeInstanceOf(typeof(string));
+      Expect(new object()).ToNotBeInstanceOf(typeof(int));
       Expect(2).ToNotBeInstanceOf(typeof(Exception));
     }
   }

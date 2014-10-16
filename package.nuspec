@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Hylasoft.Behavior</id>
+    <version>0.0</version> <!-- Not important, gets overridden by the grunt task -->
+    <title>Hylasoft.Behavior</title>
+    <description>Behavior Driven Development (BDD) wrapper for .NET MsTests</description>
+    <authors>Giacomo Tagliabue</authors>
+    <language>en-US</language>
+    <owners>Hylasoft Usa</owners>
+    <licenseUrl>https://github.com/hylasoft-usa/h-behavior/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/hylasoft-usa/h-behavior/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>Test BDD Spec Behavior Hyla Hylasoft</tags>
+  </metadata>
+  <files>
+    <file src="h-behavior.dll" target="lib"/>
+    <file src="h-behavior.xml" target="lib"/>
+  </files>
+</package>

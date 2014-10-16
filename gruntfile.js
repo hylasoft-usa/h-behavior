@@ -20,6 +20,7 @@ module.exports = function(grunt) {
     platform: 'Any CPU',
     styleCopRules: 'Settings.StyleCop',
     ruleSet: 'rules.ruleset',
+    nuspecFile: 'package.nuspec',
 
     pkg: grunt.file.readJSON('package.json'),
 
@@ -42,7 +43,10 @@ module.exports = function(grunt) {
         options: {
           projectConfiguration: 'Release',
           platform: '<%= platform %>',
-          targets: ['Clean', 'Rebuild']
+          targets: ['Clean', 'Rebuild'],
+          buildParameters: {
+            StyleCopEnabled: false
+          }
         }
       },
       debug: {
@@ -65,9 +69,34 @@ module.exports = function(grunt) {
 
     mstest: {
       debug: {
-        src: ['<%= srcPath %>/**/bin/Debug/*.dll','<%= srcPath %>/**/bin/Debug/*.exe'] // Points to test dll
+        src: ['<%= srcPath %>/**/bin/Debug/*.dll', '<%= srcPath %>/**/bin/Debug/*.exe'] // Points to test dll
       }
-    }
+    },
+
+    nugetpack: {
+      dist: {
+        src: '<%= nuspecFile %>',
+        dest: '.',
+
+        options: {
+          version: '<%= pkg.version %>',
+          basePath: '<%= srcPath %>/h-behavior/bin/Release',
+          includeReferencedProjects: true,
+          excludeEmptyDirectories: true,
+          verbose: true,
+          symbols: true
+        }
+      }
+    },
+
+    nugetpush: {
+      src: '*.<%= pkg.version %>.nupkg',
+      options: {}
+    },
+
+    clean: {
+      nuget: ['*.nupkg'],
+    },
 
   });
 
@@ -75,4 +104,5 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['msbuild:release']);
   grunt.registerTask('test', ['msbuild:debug', 'mstest']);
   grunt.registerTask('release', ['test', 'assemblyinfo']);
+  grunt.registerTask('publishNuget', ['release', 'msbuild:release', 'nugetpack', 'nugetpush', 'clean:nuget']);
 };

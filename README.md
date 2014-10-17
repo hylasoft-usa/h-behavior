@@ -41,6 +41,8 @@ You can build the project using Visual Studio or by running the grunt tasks for 
 
 ## Contribute
 
+This project uses [hylasoft/cs-boilerplate](https://github.com/hylasoft-usa/cs-boilerplate) to define tasks and stle guides. Please read the readme of the project to learn more about how to contribute.
+
 You can contribute by opening a pull request. Make sure your code complies with the quality standards by running the following task:
 
     grunt test

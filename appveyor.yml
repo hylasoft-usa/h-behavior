@@ -17,5 +17,6 @@ install:
 build_script:
   - node --version
   - npm --version
-  - ps: grunt test --no-color # PowerShell
-  - cmd: grunt test --no-color
+  - grunt test --no-color
+
+test: off # tests are done in the build script

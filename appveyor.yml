@@ -8,21 +8,12 @@ init:
 environment:
   matrix:
     - nodejs_version: 0.10
-    - nodejs_version: 0.8
-    - nodejs_version: 0.11
-
-# combinations having this can fail
-matrix:
-  allow_failures:
-    - nodejs_version: 0.11
 
 install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version)
   - npm install -g grunt-cli
   - npm install
   - npm uninstall grunt
-
-build: off
 
 build_script:
   - node --version

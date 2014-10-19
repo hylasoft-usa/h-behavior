@@ -1,6 +1,8 @@
 h-behavior
 ==========
 
+[![Build status](https://ci.appveyor.com/api/projects/status/vb2wwnybdgal8xoi/branch/master?svg=true)](https://ci.appveyor.com/project/itajaja/h-behavior/branch/master)
+
 Behavior Driven Development (BDD) wrapper for .NET MsTests
 
 ## Requirements

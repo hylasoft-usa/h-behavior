@@ -74,11 +74,7 @@ namespace Hylasoft.Behavior.Extensions
     public static void ToOnlyContainType<T, TEnum>(this TestObject<TEnum> test, Type t)
       where TEnum : IEnumerable<T>
     {
-      List<T> list = test.Obj.ToList<T>();
-      foreach (T item in list)
-      {
-        Assert.IsInstanceOfType(item, t);
-      }
+      Assert.IsTrue(test.Obj.All(i => i.GetType().IsInstanceOfType(t)));
     }
 
     /// <summary>
@@ -90,11 +86,19 @@ namespace Hylasoft.Behavior.Extensions
     public static void IsAllNotNull<T, TEnum>(this TestObject<TEnum> test)
       where TEnum : IEnumerable<T>
     {
-      List<T> list = test.Obj.ToList<T>();
-      foreach (T item in list)
-      {
-        Assert.IsNotNull(item);
-      }
+      Assert.IsFalse(test.Obj.Any(null));
+    }
+
+    /// <summary>
+    /// Verifies that all objects of a specified sequence are unique.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the enumerable</typeparam>
+    /// <typeparam name="TEnum">The enumerable for type T</typeparam>
+    /// <param name="test">A Test object for the enumerable</param>
+    public static void IsAllUnique<T, TEnum>(this TestObject<TEnum> test)
+      where TEnum : IEnumerable<T>
+    {
+      Assert.AreEqual(test.Obj.Count(), test.Obj.Distinct<T>().Count());
     }
   }
 }

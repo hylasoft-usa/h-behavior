@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hylasoft.Behavior.Extensions
@@ -61,6 +62,16 @@ namespace Hylasoft.Behavior.Extensions
       where TEnum : IEnumerable<T>
     {
       Assert.IsFalse(test.Obj.Contains(item, comparer));
+    }
+
+    public static void ToOnlyContainType<T, TEnum>(this TestObject<TEnum> test, Type t)
+      where TEnum : IEnumerable<T>
+    {
+      List<T> list = test.Obj.ToList<T>();
+      foreach (T item in list)
+      {
+        Assert.IsInstanceOfType(item, t);
+      }
     }
   }
 }

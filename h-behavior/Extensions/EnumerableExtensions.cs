@@ -55,7 +55,7 @@ namespace Hylasoft.Behavior.Extensions
     /// </summary>
     /// <typeparam name="T">The type of objects in the enumerable</typeparam>
     /// <typeparam name="TEnum">The enumerable for type T</typeparam>
-    /// <param name="test">A Test object for the enumerbale</param>
+    /// <param name="test">A Test object for the enumerable</param>
     /// <param name="item">The object to check if it's not contained in the test enumerable.</param>
     /// <param name="comparer">An equality comparer to compare values.</param>
     public static void ToNotContain<T, TEnum>(this TestObject<TEnum> test, T item, IEqualityComparer<T> comparer)
@@ -64,6 +64,13 @@ namespace Hylasoft.Behavior.Extensions
       Assert.IsFalse(test.Obj.Contains(item, comparer));
     }
 
+    /// <summary>
+    /// Verifies that all objects of a specified sequence are of a specific type.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the enumerable</typeparam>
+    /// <typeparam name="TEnum">The enumerable for type T</typeparam>
+    /// <param name="test">A Test object for the enumerable</param>
+    /// <param name="t">The type to verify for all objects.</param>
     public static void ToOnlyContainType<T, TEnum>(this TestObject<TEnum> test, Type t)
       where TEnum : IEnumerable<T>
     {
@@ -71,6 +78,22 @@ namespace Hylasoft.Behavior.Extensions
       foreach (T item in list)
       {
         Assert.IsInstanceOfType(item, t);
+      }
+    }
+
+    /// <summary>
+    /// Verifies that all objects of a specified sequence are not null.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the enumerable</typeparam>
+    /// <typeparam name="TEnum">The enumerable for type T</typeparam>
+    /// <param name="test">A Test object for the enumerable</param>
+    public static void IsAllNotNull<T, TEnum>(this TestObject<TEnum> test)
+      where TEnum : IEnumerable<T>
+    {
+      List<T> list = test.Obj.ToList<T>();
+      foreach (T item in list)
+      {
+        Assert.IsNotNull(item);
       }
     }
   }

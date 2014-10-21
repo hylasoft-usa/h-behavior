@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Hylasoft.Behavior.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -88,5 +89,22 @@ namespace Hylasoft.Behavior.Tests
       Expect<Action>(() => Expect<Action>(() => { throw new AggregateException(); }).ToThrowException<TypeLoadException>())
         .ToThrowException<AssertFailedException>();
     }
+
+    [TestMethod]
+    public void StringMethodsShouldWork()
+    {
+      string testString = "Test String";
+      string secondString = "est ";
+      Expect(testString).ToContain(secondString);
+      Regex pattern = new Regex("Fail");
+      Expect(testString).ToNotMatch(pattern);
+      secondString = "Test";
+      Expect(testString).ToStartWith(secondString);
+      pattern = new Regex("Str");
+      Expect(testString).ToMatch(pattern);
+      secondString = "String";
+      Expect(testString).ToEndWith(secondString);
+    }
+
   }
 }

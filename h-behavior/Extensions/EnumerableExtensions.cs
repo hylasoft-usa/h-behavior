@@ -155,5 +155,31 @@ namespace Hylasoft.Behavior.Extensions
     {
       CollectionAssert.AreNotEquivalent(test.Obj, expected);
     }
+
+    /// <summary>
+    /// Verifies that the test sequence is a subset of another sequence.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the collection</typeparam>
+    /// <typeparam name="TEnum">The collection for type T</typeparam>
+    /// <param name="test">The first sequence being compared</param>
+    /// <param name="expected">The second sequence being compared</param>
+    public static void IsSubsetOf<TEnum>(this TestObject<TEnum> test, TEnum expected)
+      where TEnum : ICollection
+    {
+      CollectionAssert.IsSubsetOf(test.Obj, expected);
+    }
+
+    /// <summary>
+    /// Verifies that the test sequence is NOT a subset of another sequence.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the collection</typeparam>
+    /// <typeparam name="TEnum">The collection for type T</typeparam>
+    /// <param name="test">The first sequence being compared</param>
+    /// <param name="expected">The second sequence being compared</param>
+    public static void IsNotSubsetOf<TEnum>(this TestObject<TEnum> test, TEnum expected)
+      where TEnum : ICollection
+    {
+      CollectionAssert.IsNotSubsetOf(test.Obj, expected);
+    }
   }
 }

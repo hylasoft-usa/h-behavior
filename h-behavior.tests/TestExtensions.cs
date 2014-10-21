@@ -58,6 +58,10 @@ namespace Hylasoft.Behavior.Tests
       Expect(testList).IsNotEqual(secondTestList);
       secondTestList = new List<int> { 1, 2, 4 };
       Expect(testList).IsNotEquivalent(secondTestList);
+      testList.Remove(3);
+      Expect(testList).IsSubsetOf(secondTestList);
+      secondTestList.Remove(1);
+      Expect(testList).IsNotSubsetOf(secondTestList);
     }
 
     [TestMethod]

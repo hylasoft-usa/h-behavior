@@ -74,13 +74,12 @@ namespace Hylasoft.Behavior.Extensions
     public static void ToOnlyContainType<TEnum>(this TestObject<TEnum> test, Type t)
       where TEnum : ICollection
     {
-        CollectionAssert.AllItemsAreInstancesOfType(test.Obj,t);
+      CollectionAssert.AllItemsAreInstancesOfType(test.Obj, t);
     }
 
     /// <summary>
     /// Verifies that all objects of a specified sequence are not null.
     /// </summary>
-    /// <typeparam name="T">The type of objects in the collection</typeparam>
     /// <typeparam name="TEnum">The collection for type T</typeparam>
     /// <param name="test">A Test object for the collection</param>
     public static void IsAllNotNull<TEnum>(this TestObject<TEnum> test)

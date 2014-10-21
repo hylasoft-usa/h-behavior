@@ -93,8 +93,8 @@ namespace Hylasoft.Behavior.Tests
     [TestMethod]
     public void StringMethodsShouldWork()
     {
-      String testString = "Test String";
-      String secondString = "est ";
+      string testString = "Test String";
+      string secondString = "est ";
       Expect(testString).ToContain(secondString);
       Regex pattern = new Regex("Fail");
       Expect(testString).ToNotMatch(pattern);

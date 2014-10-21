@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using Hylasoft.Behavior.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -27,7 +27,7 @@ namespace Hylasoft.Behavior.Tests
       Expect("a").ToBeLessThan("b");
     }
 
-    private class MinusComparer : IEqualityComparer<int>
+    private class MinusComparer : IEqualityComparer<int>, IComparer
     {
       public bool Equals(int x, int y)
       {
@@ -38,16 +38,37 @@ namespace Hylasoft.Behavior.Tests
       {
         return 0;
       }
+
+      public int Compare(object x, object y)
+      {
+        return ((int)x).CompareTo((int)y);
+      }
     }
 
     [TestMethod]
     public void EnumerableMethodsShouldWork()
     {
       var testList = new List<int> { 1, 2, 3 };
+      var secondTestList = new List<int> { 1, 2, 3 };
       Expect(testList).ToContain(1);
       Expect(testList).ToNotContain(0);
       Expect(testList).ToNotContain(1, new MinusComparer());
       Expect(testList).ToContain(4, new MinusComparer());
+      Expect(testList).ToOnlyContainType(typeof(int));
+      Expect(testList).IsAllNotNull();
+      Expect(testList).IsAllUnique();
+      Expect(testList).IsEqual(secondTestList);
+      Expect(testList).IsEqual(secondTestList, new MinusComparer());
+      secondTestList = new List<int> { 2, 3, 1 };
+      Expect(testList).IsEquivalent(secondTestList);
+      Expect(testList).IsNotEqual(secondTestList);
+      Expect(testList).IsNotEqual(secondTestList, new MinusComparer());
+      secondTestList = new List<int> { 1, 2, 4 };
+      Expect(testList).IsNotEquivalent(secondTestList);
+      testList.Remove(3);
+      Expect(testList).IsSubsetOf(secondTestList);
+      secondTestList.Remove(1);
+      Expect(testList).IsNotSubsetOf(secondTestList);
     }
 
     [TestMethod]

@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.Collections;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
 
 namespace Hylasoft.Behavior.Extensions
 {
@@ -94,7 +92,6 @@ namespace Hylasoft.Behavior.Extensions
     /// <summary>
     /// Verifies that all objects of a specified sequence are unique.
     /// </summary>
-    /// <typeparam name="T">The type of objects in the collection</typeparam>
     /// <typeparam name="TEnum">The collection for type T</typeparam>
     /// <param name="test">A Test object for the collection</param>
     public static void IsAllUnique<TEnum>(this TestObject<TEnum> test)
@@ -106,7 +103,6 @@ namespace Hylasoft.Behavior.Extensions
     /// <summary>
     /// Verifies that two sequences have the same objects in the same order.
     /// </summary>
-    /// <typeparam name="T">The type of objects in the collection</typeparam>
     /// <typeparam name="TEnum">The collection for type T</typeparam>
     /// <param name="test">The first sequence being compared</param>
     /// <param name="expected">The second sequence being compared</param>
@@ -116,11 +112,22 @@ namespace Hylasoft.Behavior.Extensions
       CollectionAssert.AreEqual(test.Obj, expected);
     }
 
+    /// <summary>
+    /// Verifies that two sequences have the same objects in the same order.
+    /// </summary>
+    /// <typeparam name="TEnum">The collection for type T</typeparam>
+    /// <param name="test">The first sequence being compared</param>
+    /// <param name="expected">The second sequence being compared</param>
+    /// <param name="comparer">A comparer to compare collections.</param>
+    public static void IsEqual<TEnum>(this TestObject<TEnum> test, TEnum expected, IComparer comparer)
+      where TEnum : ICollection
+    {
+      CollectionAssert.AreEqual(test.Obj, expected, comparer);
+    }
 
     /// <summary>
     /// Verifies that two sequences have the same objects, but not necessarily in the same order.
     /// </summary>
-    /// <typeparam name="T">The type of objects in the collection</typeparam>
     /// <typeparam name="TEnum">The collection for type T</typeparam>
     /// <param name="test">The first sequence being compared</param>
     /// <param name="expected">The second sequence being compared</param>
@@ -133,7 +140,6 @@ namespace Hylasoft.Behavior.Extensions
     /// <summary>
     /// Verifies that two sequences do NOT have the same objects in the same order.
     /// </summary>
-    /// <typeparam name="T">The type of objects in the collection</typeparam>
     /// <typeparam name="TEnum">The collection for type T</typeparam>
     /// <param name="test">The first sequence being compared</param>
     /// <param name="expected">The second sequence being compared</param>
@@ -144,9 +150,21 @@ namespace Hylasoft.Behavior.Extensions
     }
 
     /// <summary>
+    /// Verifies that two sequences do NOT have the same objects in the same order.
+    /// </summary>
+    /// <typeparam name="TEnum">The collection for type T</typeparam>
+    /// <param name="test">The first sequence being compared</param>
+    /// <param name="expected">The second sequence being compared</param>
+    /// <param name="comparer">A comparer to compare collections.</param>
+    public static void IsNotEqual<TEnum>(this TestObject<TEnum> test, TEnum expected, IComparer comparer)
+      where TEnum : ICollection
+    {
+      CollectionAssert.AreNotEqual(test.Obj, expected, comparer);
+    }
+
+    /// <summary>
     /// Verifies that two sequences DO NOT have the same objects, even if in a different order.
     /// </summary>
-    /// <typeparam name="T">The type of objects in the collection</typeparam>
     /// <typeparam name="TEnum">The collection for type T</typeparam>
     /// <param name="test">The first sequence being compared</param>
     /// <param name="expected">The second sequence being compared</param>
@@ -159,7 +177,6 @@ namespace Hylasoft.Behavior.Extensions
     /// <summary>
     /// Verifies that the test sequence is a subset of another sequence.
     /// </summary>
-    /// <typeparam name="T">The type of objects in the collection</typeparam>
     /// <typeparam name="TEnum">The collection for type T</typeparam>
     /// <param name="test">The first sequence being compared</param>
     /// <param name="expected">The second sequence being compared</param>
@@ -172,7 +189,6 @@ namespace Hylasoft.Behavior.Extensions
     /// <summary>
     /// Verifies that the test sequence is NOT a subset of another sequence.
     /// </summary>
-    /// <typeparam name="T">The type of objects in the collection</typeparam>
     /// <typeparam name="TEnum">The collection for type T</typeparam>
     /// <param name="test">The first sequence being compared</param>
     /// <param name="expected">The second sequence being compared</param>

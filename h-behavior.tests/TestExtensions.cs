@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using Hylasoft.Behavior.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

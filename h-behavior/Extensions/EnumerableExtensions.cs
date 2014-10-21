@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -112,7 +113,21 @@ namespace Hylasoft.Behavior.Extensions
     public static void IsEqual<TEnum>(this TestObject<TEnum> test, TEnum expected)
       where TEnum : ICollection
     {
-      Assert.Equals(test.Obj, expected);
+      CollectionAssert.AreEqual(test.Obj, expected);
+    }
+
+
+    /// <summary>
+    /// Verifies that two sequences have the same objects, but not necessarily in the same order.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the collection</typeparam>
+    /// <typeparam name="TEnum">The collection for type T</typeparam>
+    /// <param name="test">The first sequence being compared</param>
+    /// <param name="expected">The second sequence being compared</param>
+    public static void IsEquivalent<TEnum>(this TestObject<TEnum> test, TEnum expected)
+      where TEnum : ICollection
+    {
+      CollectionAssert.AreEquivalent(test.Obj, expected);
     }
   }
 }

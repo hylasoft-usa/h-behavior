@@ -53,6 +53,8 @@ namespace Hylasoft.Behavior.Tests
       Expect(testList).IsAllNotNull();
       Expect(testList).IsAllUnique();
       Expect(testList).IsEqual(secondTestList);
+      secondTestList = new List<int> { 2, 3, 1 };
+      Expect(testList).IsEquivalent(secondTestList);
     }
 
     [TestMethod]

@@ -55,6 +55,9 @@ namespace Hylasoft.Behavior.Tests
       Expect(testList).IsEqual(secondTestList);
       secondTestList = new List<int> { 2, 3, 1 };
       Expect(testList).IsEquivalent(secondTestList);
+      Expect(testList).IsNotEqual(secondTestList);
+      secondTestList = new List<int> { 1, 2, 4 };
+      Expect(testList).IsNotEquivalent(secondTestList);
     }
 
     [TestMethod]

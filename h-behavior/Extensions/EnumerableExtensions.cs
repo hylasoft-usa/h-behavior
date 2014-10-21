@@ -129,5 +129,31 @@ namespace Hylasoft.Behavior.Extensions
     {
       CollectionAssert.AreEquivalent(test.Obj, expected);
     }
+
+    /// <summary>
+    /// Verifies that two sequences do NOT have the same objects in the same order.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the collection</typeparam>
+    /// <typeparam name="TEnum">The collection for type T</typeparam>
+    /// <param name="test">The first sequence being compared</param>
+    /// <param name="expected">The second sequence being compared</param>
+    public static void IsNotEqual<TEnum>(this TestObject<TEnum> test, TEnum expected)
+      where TEnum : ICollection
+    {
+      CollectionAssert.AreNotEqual(test.Obj, expected);
+    }
+
+    /// <summary>
+    /// Verifies that two sequences DO NOT have the same objects, even if in a different order.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the collection</typeparam>
+    /// <typeparam name="TEnum">The collection for type T</typeparam>
+    /// <param name="test">The first sequence being compared</param>
+    /// <param name="expected">The second sequence being compared</param>
+    public static void IsNotEquivalent<TEnum>(this TestObject<TEnum> test, TEnum expected)
+      where TEnum : ICollection
+    {
+      CollectionAssert.AreNotEquivalent(test.Obj, expected);
+    }
   }
 }

@@ -44,6 +44,7 @@ namespace Hylasoft.Behavior.Tests
     public void EnumerableMethodsShouldWork()
     {
       var testList = new List<int> { 1, 2, 3 };
+      var secondTestList = new List<int> { 1, 2, 3 };
       Expect(testList).ToContain(1);
       Expect(testList).ToNotContain(0);
       Expect(testList).ToNotContain(1, new MinusComparer());
@@ -51,6 +52,7 @@ namespace Hylasoft.Behavior.Tests
       Expect(testList).ToOnlyContainType(typeof(int));
       Expect(testList).IsAllNotNull();
       Expect(testList).IsAllUnique();
+      Expect(testList).IsEqual(secondTestList);
     }
 
     [TestMethod]

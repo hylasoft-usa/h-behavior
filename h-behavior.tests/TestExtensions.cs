@@ -48,6 +48,9 @@ namespace Hylasoft.Behavior.Tests
       Expect(testList).ToNotContain(0);
       Expect(testList).ToNotContain(1, new MinusComparer());
       Expect(testList).ToContain(4, new MinusComparer());
+      Expect(testList).ToOnlyContainType(typeof(int));
+      Expect(testList).IsAllNotNull();
+      Expect(testList).IsAllUnique();
     }
 
     [TestMethod]

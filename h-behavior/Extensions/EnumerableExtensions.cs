@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
 
 namespace Hylasoft.Behavior.Extensions
 {
@@ -18,7 +20,7 @@ namespace Hylasoft.Behavior.Extensions
     /// <param name="test">A Test object for the enumerbale</param>
     /// <param name="item">The object to check if it's contained in the test enumerable.</param>
     public static void ToContain<T, TEnum>(this TestObject<TEnum> test, T item)
-      where TEnum : IEnumerable<T>
+      where TEnum : ICollection<T>
     {
       Assert.IsTrue(test.Obj.Contains(item));
     }
@@ -31,7 +33,7 @@ namespace Hylasoft.Behavior.Extensions
     /// <param name="test">A Test object for the enumerbale</param>
     /// <param name="item">The object to check if it's not contained in the test enumerable.</param>
     public static void ToNotContain<T, TEnum>(this TestObject<TEnum> test, T item)
-      where TEnum : IEnumerable<T>
+      where TEnum : ICollection<T>
     {
       Assert.IsFalse(test.Obj.Contains(item));
     }
@@ -45,7 +47,7 @@ namespace Hylasoft.Behavior.Extensions
     /// <param name="item">The object to check if it's contained in the test enumerable.</param>
     /// <param name="comparer">An equality comparer to compare values.</param>
     public static void ToContain<T, TEnum>(this TestObject<TEnum> test, T item, IEqualityComparer<T> comparer)
-      where TEnum : IEnumerable<T>
+      where TEnum : ICollection<T>
     {
       Assert.IsTrue(test.Obj.Contains(item, comparer));
     }
@@ -59,7 +61,7 @@ namespace Hylasoft.Behavior.Extensions
     /// <param name="item">The object to check if it's not contained in the test enumerable.</param>
     /// <param name="comparer">An equality comparer to compare values.</param>
     public static void ToNotContain<T, TEnum>(this TestObject<TEnum> test, T item, IEqualityComparer<T> comparer)
-      where TEnum : IEnumerable<T>
+      where TEnum : ICollection<T>
     {
       Assert.IsFalse(test.Obj.Contains(item, comparer));
     }
@@ -67,14 +69,13 @@ namespace Hylasoft.Behavior.Extensions
     /// <summary>
     /// Verifies that all objects of a specified sequence are of a specific type.
     /// </summary>
-    /// <typeparam name="T">The type of objects in the enumerable</typeparam>
     /// <typeparam name="TEnum">The enumerable for type T</typeparam>
     /// <param name="test">A Test object for the enumerable</param>
     /// <param name="t">The type to verify for all objects.</param>
-    public static void ToOnlyContainType<T, TEnum>(this TestObject<TEnum> test, Type t)
-      where TEnum : IEnumerable<T>
+    public static void ToOnlyContainType<TEnum>(this TestObject<TEnum> test, Type t)
+      where TEnum : ICollection
     {
-      Assert.IsTrue(test.Obj.All(i => i.GetType().IsInstanceOfType(t)));
+        CollectionAssert.AllItemsAreInstancesOfType(test.Obj,t);
     }
 
     /// <summary>
@@ -83,10 +84,10 @@ namespace Hylasoft.Behavior.Extensions
     /// <typeparam name="T">The type of objects in the enumerable</typeparam>
     /// <typeparam name="TEnum">The enumerable for type T</typeparam>
     /// <param name="test">A Test object for the enumerable</param>
-    public static void IsAllNotNull<T, TEnum>(this TestObject<TEnum> test)
-      where TEnum : IEnumerable<T>
+    public static void IsAllNotNull<TEnum>(this TestObject<TEnum> test)
+      where TEnum : ICollection
     {
-      Assert.IsFalse(test.Obj.Any(null));
+      CollectionAssert.AllItemsAreNotNull(test.Obj);
     }
 
     /// <summary>
@@ -95,10 +96,10 @@ namespace Hylasoft.Behavior.Extensions
     /// <typeparam name="T">The type of objects in the enumerable</typeparam>
     /// <typeparam name="TEnum">The enumerable for type T</typeparam>
     /// <param name="test">A Test object for the enumerable</param>
-    public static void IsAllUnique<T, TEnum>(this TestObject<TEnum> test)
-      where TEnum : IEnumerable<T>
+    public static void IsAllUnique<TEnum>(this TestObject<TEnum> test)
+      where TEnum : ICollection
     {
-      Assert.AreEqual(test.Obj.Count(), test.Obj.Distinct<T>().Count());
+      CollectionAssert.AllItemsAreUnique(test.Obj);
     }
   }
 }

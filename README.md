@@ -1,7 +1,5 @@
-h-behavior
+h-behavior [![Build status](https://ci.appveyor.com/api/projects/status/vb2wwnybdgal8xoi/branch/master?svg=true)](https://ci.appveyor.com/project/itajaja/h-behavior/branch/master) [![NuGet Status](http://img.shields.io/nuget/v/Hylasoft.Behavior.svg)](https://www.nuget.org/packages/Hylasoft.Behavior)
 ==========
-
-[![Build status](https://ci.appveyor.com/api/projects/status/vb2wwnybdgal8xoi/branch/master?svg=true)](https://ci.appveyor.com/project/itajaja/h-behavior/branch/master)
 
 Behavior Driven Development (BDD) wrapper for .NET MsTests
 

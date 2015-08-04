@@ -89,13 +89,13 @@ namespace Hylasoft.Behavior.Tests
       Expect<Action>(() => Expect<Action>(() => { throw new AggregateException(); }).ToThrowException<TypeLoadException>())
         .ToThrowException<AssertFailedException>();
 
+      Action throwError = () => { throw new InvalidOperationException("ERROR"); };
       // Test callback
-      Expect<Action>(() => { throw new IndexOutOfRangeException("ERROR"); })
-        .ToThrowException<IndexOutOfRangeException>(e => e.Message == "ERROR");
-
+      Expect(throwError)
+        .ToThrowException<InvalidOperationException>(e => e.Message == "ERROR");
       // test wrong callback
-      Expect<Action>(() => Expect<Action>(() => { throw new IndexOutOfRangeException("ERROR"); })
-        .ToThrowException<IndexOutOfRangeException>(e => e.Message == "WRONG ERROR MESSAGE"))
+      Expect<Action>(() => Expect(throwError)
+        .ToThrowException<InvalidOperationException>(e => e.Message == "WRONG ERROR MESSAGE"))
         .ToThrowException<AssertFailedException>();
     }
 

@@ -29,7 +29,7 @@ namespace Hylasoft.Behavior.Extensions
           Assert.Fail("Exception " + e.GetType() + " is not of type " + typeof(T));
         // assert about the exception
         if (evaluate != null)
-          Assert.IsTrue(evaluate((T) e));
+          Assert.IsTrue(evaluate((T)e));
       }
     }
   }

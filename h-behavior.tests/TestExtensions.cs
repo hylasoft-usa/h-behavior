@@ -88,6 +88,15 @@ namespace Hylasoft.Behavior.Tests
         .ToThrowException<AssertFailedException>();
       Expect<Action>(() => Expect<Action>(() => { throw new AggregateException(); }).ToThrowException<TypeLoadException>())
         .ToThrowException<AssertFailedException>();
+
+      // Test callback
+      Expect<Action>(() => { throw new IndexOutOfRangeException("ERROR"); })
+        .ToThrowException<IndexOutOfRangeException>(e => e.Message == "ERROR");
+
+      // test wrong callback
+      Expect<Action>(() => Expect<Action>(() => { throw new IndexOutOfRangeException("ERROR"); })
+        .ToThrowException<IndexOutOfRangeException>(e => e.Message == "WRONG ERROR MESSAGE"))
+        .ToThrowException<AssertFailedException>();
     }
 
     [TestMethod]

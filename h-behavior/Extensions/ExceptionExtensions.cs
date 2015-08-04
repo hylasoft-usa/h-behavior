@@ -14,7 +14,7 @@ namespace Hylasoft.Behavior.Extensions
     /// <typeparam name="T">The type of exception that is thrown or any of its supertype</typeparam>
     /// <param name="test">the test object that is expected to throw the exception</param>
     /// <param name="evaluate">callback predicate to evaluate the exception</param>
-    public static void ToThrowException<T>(this TestObject<Action> test, Predicate<Exception> evaluate = null) where T : Exception
+    public static void ToThrowException<T>(this TestObject<Action> test, Predicate<T> evaluate = null) where T : Exception
     {
       if (test.Obj == null)
         throw new ArgumentNullException("test", "the function to evaluate cannot be null.");
@@ -29,7 +29,7 @@ namespace Hylasoft.Behavior.Extensions
           Assert.Fail("Exception " + e.GetType() + " is not of type " + typeof(T));
         // assert about the exception
         if (evaluate != null)
-          Assert.IsTrue(evaluate(e));
+          Assert.IsTrue(evaluate((T) e));
       }
     }
   }
